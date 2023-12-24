@@ -87,3 +87,20 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+function countmonths(finances) {
+  let months = new Set();
+  
+  finances.forEach(entry => {
+    let [dateStr, value] = entry;
+    let monthYear = dateStr.split('-');
+    let month = monthYear[0];
+    let year = monthYear[1];
+    
+    months.add(`${month}-${year}`);
+  });
+  
+  return months.size;
+}
+
+let numberOfMonths = countmonths(finances);
+console.log("Total Months:", numberOfMonths);
