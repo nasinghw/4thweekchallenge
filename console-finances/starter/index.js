@@ -113,3 +113,31 @@ function TotalProfitLoss(finances) {
 }
 const netTotalAmount = TotalProfitLoss(finances);
 console.log('Net Total Amount: £', netTotalAmount);
+
+//The average of the changes in Profit/Losses over the entire period.
+
+
+// Initialize variables to hold total change and total months
+let totalChange = 0;
+let totalMonths = 0;
+
+// Iterate through the finances array starting from the second element
+for (let i = 1; i < finances.length; i++) {
+  // Extract the profit/loss values of current and previous months
+  let currentProfit = finances[i][1];
+  let previousProfit = finances[i - 1][1];
+
+  // Calculate the change between current and previous months
+  let change = currentProfit - previousProfit;
+
+  // Add the change to the total change
+  totalChange += change;
+  totalMonths++;
+}
+
+// Calculate the average change
+let averageChange = totalChange / totalMonths;
+
+// Display the average change rounded to 2 decimal places
+console.log("Average Change:", averageChange.toFixed(2));
+
