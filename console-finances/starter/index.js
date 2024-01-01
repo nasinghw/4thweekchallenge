@@ -116,6 +116,29 @@ console.log('Net Total Amount: £', netTotalAmount);
 
 //The average of the changes in Profit/Losses over the entire period.
 
+function AverageChange(data) {
+  let totalChange = 0;
+
+  // Loop through the array to calculate the differences
+  for (let i = 1; i < data.length; i++) {
+    let currentProfit = data[i][1];
+    let previousProfit = data[i - 1][1];
+    let difference = currentProfit - previousProfit;
+    totalChange += difference;
+  }
+
+  // Calculate the average
+  let averageChange = totalChange / (data.length - 1);
+  return averageChange;
+}
+
+// Call the function with your 'finances' array
+let averageProfitChange = AverageChange(finances);
+console.log("Average change: £", averageProfitChange.toFixed(2));
+
+//
+
+
 
 // Initialize variables to hold total change and total months
 let totalChange = 0;
@@ -139,5 +162,54 @@ for (let i = 1; i < finances.length; i++) {
 let averageChange = totalChange / totalMonths;
 
 // Display the average change rounded to 2 decimal places
-console.log("Average Change:", averageChange.toFixed(2));
+console.log("Average Change: £", averageChange.toFixed(2));
 
+//
+
+function calculateGreatestIncrease(data) {
+  let greatestIncrease = 0;
+  let greatestIncreaseMonth = '';
+  let previousValue = data[0][1];
+
+  for (let i = 1; i < data.length; i++) {
+    const currentValue = data[i][1];
+    const difference = currentValue - previousValue;
+
+    if (difference > greatestIncrease) {
+      greatestIncrease = difference;
+      greatestIncreaseMonth = data[i][0];
+    }
+
+    previousValue = currentValue;
+  }
+
+  return [greatestIncreaseMonth, greatestIncrease];
+}
+
+const result = calculateGreatestIncrease(finances);
+console.log(`Greatest Increase in Profits/Losses: ${result[0]} with a difference of (£${result[1]})`);
+
+//
+
+
+function calculateGreatestDecrease(finances) {
+  let greatestDecrease = 0;
+  let decreaseDate = '';
+
+  for (let i = 1; i < finances.length; i++) {
+    const currentProfit = finances[i][1];
+    const previousProfit = finances[i - 1][1];
+    const difference = currentProfit - previousProfit;
+
+    if (difference < greatestDecrease) {
+      greatestDecrease = difference;
+      decreaseDate = finances[i][0];
+    }
+  }
+
+  return [decreaseDate, greatestDecrease];
+}
+
+const [date, amount] = calculateGreatestDecrease(finances);
+
+console.log(`Greatest decrease in Profit/Losses: ${date} with a decrease of (£${amount})`);
