@@ -86,7 +86,7 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
-//The total number of months included in the dataset.
+//The total number of months in the dataset.
 function countmonths(finances) {
   let months = new Set();
     finances.forEach(entry => {
@@ -101,18 +101,6 @@ function countmonths(finances) {
 }
 let numberOfMonths = countmonths(finances);
 console.log("Total Months:", numberOfMonths);
-
-//The net total amount of Profit/Losses over the entire period.
-
-function TotalProfitLoss(finances) {
-  let netTotal = 0;
-  for (let i = 0; i < finances.length; i++) {
-    netTotal += finances[i][1];
-  }
-  return netTotal;
-}
-const netTotalAmount = TotalProfitLoss(finances);
-console.log('Net Total Amount: £', netTotalAmount);
 
 //The average of the changes in Profit/Losses over the entire period.
 
