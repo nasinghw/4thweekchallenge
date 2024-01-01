@@ -102,6 +102,18 @@ function countmonths(finances) {
 let numberOfMonths = countmonths(finances);
 console.log("Total Months:", numberOfMonths);
 
+//The net total amount of Profit/Losses over the entire period.
+
+function TotalProfitLoss(finances) {
+  let netTotal = 0;
+  for (let i = 0; i < finances.length; i++) {
+    netTotal += finances[i][1];
+  }
+  return netTotal;
+}
+const netTotalAmount = TotalProfitLoss(finances);
+console.log('Net Total Amount: £', netTotalAmount);
+
 //The average of the changes in Profit/Losses over the entire period.
 
 function AverageChange(data) {
@@ -123,10 +135,6 @@ function AverageChange(data) {
 // Call the function with your 'finances' array
 let averageProfitChange = AverageChange(finances);
 console.log("Average change: £", averageProfitChange.toFixed(2));
-
-//
-
-
 
 // Initialize variables to hold total change and total months
 let totalChange = 0;
@@ -152,7 +160,7 @@ let averageChange = totalChange / totalMonths;
 // Display the average change rounded to 2 decimal places
 console.log("Average Change: £", averageChange.toFixed(2));
 
-//
+//Greatest Increase in Profits/Losses
 
 function calculateGreatestIncrease(data) {
   let greatestIncrease = 0;
@@ -177,7 +185,7 @@ function calculateGreatestIncrease(data) {
 const result = calculateGreatestIncrease(finances);
 console.log(`Greatest Increase in Profits/Losses: ${result[0]} with a difference of (£${result[1]})`);
 
-//
+//Greatest Decrease in Profits/Losses
 
 
 function calculateGreatestDecrease(finances) {
